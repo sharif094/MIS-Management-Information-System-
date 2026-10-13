@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIS Management Information System</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">MIS</div>
+          <div>
+            <h1>Management System</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="#overview" class="active">Overview</a>
+          <a href="#employees">Employees</a>
+          <a href="#assets">Assets</a>
+          <a href="#records">Records</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <p class="mini-label">Quick status</p>
+          <h3 id="statusSummary">Operational</h3>
+          <p>Core HR and asset data are being tracked in real time.</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Human Resources & Asset Operations</p>
+            <h2>Management Information System</h2>
+          </div>
+          <button class="primary-btn" id="resetDemoDataBtn">Reset sample data</button>
+        </header>
+
+        <section id="overview" class="overview-grid">
+          <div class="stat-card highlight">
+            <span>Total Employees</span>
+            <strong id="totalEmployees">0</strong>
+            <small>Across all departments</small>
+          </div>
+          <div class="stat-card">
+            <span>Active Staff</span>
+            <strong id="activeEmployees">0</strong>
+            <small>Currently working</small>
+          </div>
+          <div class="stat-card">
+            <span>Total Assets</span>
+            <strong id="totalAssets">0</strong>
+            <small>Tracked devices and equipment</small>
+          </div>
+          <div class="stat-card">
+            <span>Available Assets</span>
+            <strong id="availableAssets">0</strong>
+            <small>Ready for allocation</small>
+          </div>
+        </section>
+
+        <section class="panel-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Add Employee</h3>
+            </div>
+            <form id="employeeForm" class="stack-form">
+              <div class="field-row two-up">
+                <label>
+                  Full name
+                  <input type="text" name="name" placeholder="Ex: Sarah Johnson" required />
+                </label>
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="name@company.com" required />
+                </label>
+              </div>
+
+              <div class="field-row two-up">
+                <label>
+                  Department
+                  <select name="department" required>
+                    <option value="">Select department</option>
+                    <option>Human Resources</option>
+                    <option>Engineering</option>
+                    <option>Finance</option>
+                    <option>Operations</option>
+                    <option>Sales</option>
+                    <option>Administration</option>
+                  </select>
+                </label>
+                <label>
+                  Role
+                  <input type="text" name="role" placeholder="Operations Manager" required />
+                </label>
+              </div>
+
+              <div class="field-row two-up">
+                <label>
+                  Joined date
+                  <input type="date" name="joinedDate" required />
+                </label>
+                <label>
+                  Employment status
+                  <select name="status" required>
+                    <option value="Active">Active</option>
+                    <option value="On Leave">On Leave</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </label>
+              </div>
+
+              <button type="submit" class="primary-btn full-width">Save employee</button>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Register Asset</h3>
+            </div>
+            <form id="assetForm" class="stack-form">
+              <div class="field-row two-up">
+                <label>
+                  Asset name
+                  <input type="text" name="name" placeholder="Dell Latitude 7440" required />
+                </label>
+                <label>
+                  Asset type
+                  <select name="type" required>
+                    <option value="">Select type</option>
+                    <option>Laptop</option>
+                    <option>Desktop</option>
+                    <option>Monitor</option>
+                    <option>Printer</option>
+                    <option>Mobile</option>
+                    <option>Furniture</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="field-row two-up">
+                <label>
+                  Serial number
+                  <input type="text" name="serialNumber" placeholder="SER-1042" required />
+                </label>
+                <label>
+                  Status
+                  <select name="status" required>
+                    <option value="Available">Available</option>
+                    <option value="Assigned">Assigned</option>
+                    <option value="Maintenance">Maintenance</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                Assign to employee
+                <select name="assignedTo" id="assetOwnerSelect">
+                  <option value="">Unassigned</option>
+                </select>
+              </label>
+
+              <button type="submit" class="primary-btn full-width">Save asset</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="employees" class="panel table-panel">
+          <div class="panel-header with-actions">
+            <h3>Employee Directory</h3>
+            <div class="filters">
+              <input id="employeeSearch" type="search" placeholder="Search employee" />
+              <select id="employeeStatusFilter">
+                <option value="All">All statuses</option>
+                <option value="Active">Active</option>
+                <option value="On Leave">On Leave</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Joined</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="employeeTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="assets" class="panel table-panel">
+          <div class="panel-header">
+            <h3>Asset Inventory</h3>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Type</th>
+                  <th>Serial No.</th>
+                  <th>Assigned To</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="assetTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="records" class="panel info-panel">
+          <div class="panel-header">
+            <h3>Operations Snapshot</h3>
+          </div>
+          <div class="record-grid">
+            <div>
+              <p class="mini-label">Departments</p>
+              <ul id="departmentSummary" class="summary-list"></ul>
+            </div>
+            <div>
+              <p class="mini-label">Asset availability</p>
+              <ul id="assetSummary" class="summary-list"></ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
