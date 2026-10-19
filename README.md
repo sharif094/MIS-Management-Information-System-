@@ -1,20 +1,23 @@
-# MIS-Management-Information-System-
+# MIS Business
 
-A complete, responsive MIS dashboard for HR management and asset tracking.
+A responsive, browser-based MIS dashboard with employee, HR, and asset management.
 
 ## Overview
-This project provides a simple but practical management information system for:
-- employee directory and status tracking
-- department overview and staffing metrics
-- asset registration and assignment tracking
-- inventory visibility for available and assigned equipment
+MIS Business provides a local-first management information system for hospital
+operations, including an HR module and asset inventory.
 
 ## Features
-- Add, view, and remove employees
-- Track employee status: Active, On Leave, Inactive
+- Employee onboarding with business, department, role, employment type, contact, and salary details
+- Employee master list with text search, status and department filters, and multi-business filtering
+- Daily attendance recording with present, late, absent, and leave summaries
+- Leave requests with approval, decline, and annual leave balance tracking
+- Monthly payroll processing and downloadable CSV payslips
+- Recruitment pipeline with interview dates and candidate stages
+- Performance appraisals with ratings and written feedback
+- Employee document uploads, downloads, and expiry tracking
+- Alerts for pending leave approvals and expiring or expired documents
+- Department headcount and workforce dashboard metrics
 - Register and manage assets with serial numbers and assignment details
-- Dashboard summary cards for workforce and asset utilization
-- Search and filter employee records
 - Local browser persistence using `localStorage`
 
 ## Run the project
@@ -38,5 +41,9 @@ http://localhost:8000
 - `styles.css` – dashboard styling and responsive layout
 - `app.js` – employee and asset logic, sample data, and data persistence
 
-## Notes
-The project is intentionally lightweight and ready to extend with backend APIs, authentication, reporting, and role-based access control.
+## Local storage notes
+All employee and HR information is saved in the current browser profile and is
+not synchronized between devices or users. Uploaded documents are stored in
+browser storage and limited to 400 KB per file. Use a backend with
+authentication, access controls, backups, and secure document storage before
+using this prototype for real employee, payroll, or healthcare data.
